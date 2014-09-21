@@ -1,0 +1,18 @@
+{#
+This file is part of the CampaignChain package.
+
+(c) Sandro Groganz <sandro@campaignchain.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+
+{% extends 'CampaignChainCoreBundle:Base:base.html.twig' %}
+
+{% block body %}
+     <div class="jumbotron">
+         <p>Please configure your <strong>{{ key_label }}</strong> and <strong>{{ secret_label }}</strong> to be able to access {{ resource_owner }} from this application. You can find the related information at <a href="{{ config_url|raw }}">{{ config_url|raw }}</a> where you can also register a new application if you did not do so yet.</p>
+         <p><a class="btn btn-primary btn-lg" role="button" href="{{ path('campaignchain_security_authentication_client_oauth_new') }}?redirect={{ app.request.uri }}&resource_owner={{ resource_owner }}">Configure App Credentials</a></p>
+     </div>
+
+ {% endblock %}

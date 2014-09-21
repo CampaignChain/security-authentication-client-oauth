@@ -1,0 +1,32 @@
+# This file is part of the CampaignChain package.
+#
+# (c) Sandro Groganz <sandro@campaignchain.com>
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+
+#Hybridauth routes
+campaignchain_security_authentication_client_oauth_login:
+    pattern:  /security/authentication/client/oauth/login
+    defaults: { _controller: CampaignChainSecurityAuthenticationClientOAuthBundle:OAuth:login }
+
+campaignchain_security_authentication_client_oauth_new:
+    pattern:  /security/authentication/client/oauth/new
+    defaults: { _controller: CampaignChainSecurityAuthenticationClientOAuthBundle:OAuth:new }
+
+#HWIOAuthBundle routes
+#hwi_oauth_security:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+#    prefix: /security/authentication/client/oauth
+#
+#hwi_oauth_connect:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+#    prefix: /security/authentication/client/oauth
+#
+#hwi_oauth_redirect:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+#    prefix: /security/authentication/client/oauth
+
+#campaignchain_security_authentication_client_o_auth_homepage:
+#    pattern:  /hello/{name}
+#    defaults: { _controller: CampaignChainSecurityAuthenticationClientOAuthBundle:Default:index }
