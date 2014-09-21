@@ -14,5 +14,8 @@
     "require": {
         "campaignchain/core": "dev-master",
         "hybridauth/hybridauth": "dev-master"
+    },
+    "autoload": {
+        "psr-4": { "CampaignChain\\Security\\Authentication\\Client\\OAuthBundle\\": "" }
     }
 }
