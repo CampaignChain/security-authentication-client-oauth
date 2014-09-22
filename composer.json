@@ -13,6 +13,6 @@
     ],
     "require": {
         "campaignchain/core": "dev-master",
-        "hybridauth/hybridauth": "dev-master"
+        "hybridauth/hybridauth": "2.2.2"
     }
 }
