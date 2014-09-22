@@ -8,7 +8,7 @@
 parameters:
     campaignchain_security_authentication_client_oauth:
         debug_mode: false
-        debug_file: /Users/ordnas/campaignchain/app/logs/oauth.log
+        debug_file: app/logs/oauth.log
 
 services:
 #    campaignchain_security_authentication_client_o_auth.example:
