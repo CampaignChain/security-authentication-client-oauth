@@ -1,0 +1,45 @@
+{#
+This file is part of the CampaignChain package.
+
+(c) Sandro Groganz <sandro@campaignchain.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+
+{% extends 'CampaignChainCoreBundle:Base:base.html.twig' %}
+
+{% block bodytabs %}
+    {{ knp_menu_render('CampaignChainCoreBundle:Builder:activityListTab', { 'style': 'tabs' }) }}
+{% endblock %}
+
+{% block body %}
+    {% include 'CampaignChainCoreBundle:Base:datatable.html.twig' %}
+
+    <!--<div class="table-responsive">-->
+        <table id="example" class="table table-striped table-bordered dataTable">
+            <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>Key</th>
+                    <th>Secret</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for app in apps %}
+                    <tr>
+                        <td>{{ app.resourceOwner }}</td>
+                        <td>{{ app.key }}</td>
+                        <td>{{ app.secret }}</td>
+                        <td>
+                            <a role="button" class="btn btn-default btn-xs"
+                               href="{{ path('campaignchain_security_authentication_client_oauth_apps_edit',{'id':app.id}) }}">
+                                <span class="fa fa-pencil"></span></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <!--</div>-->
+{% endblock %}

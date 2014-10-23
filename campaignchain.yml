@@ -8,3 +8,7 @@
 modules:
     campaignchain-security-authentication-client-oauth:
         display_name: OAuth Client
+        system:
+            navigation:
+                settings:
+                    - ["OAuth Apps", campaignchain_security_authentication_client_oauth_apps]
