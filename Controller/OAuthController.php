@@ -66,7 +66,6 @@ class OAuthController extends Controller
         $form = $this->createFormBuilder($application)
             ->add('key', 'text', array('label' => 'App Key'))
             ->add('secret', 'text', array('label' => 'App Secret'))
-            ->add('save', 'submit')
             ->getForm();
 
         $form->handleRequest($request);
@@ -83,10 +82,11 @@ class OAuthController extends Controller
         }
 
         return $this->render(
-            'CampaignChainCoreBundle:Activity:new.html.twig',
+            'CampaignChainCoreBundle:Base:new.html.twig',
             array(
                 'page_title' => 'Configure App Credentials for '.$request->query->get('resource_owner'),
                 'form' => $form->createView(),
+                'form_submit_label' => 'Save',
             ));
 
     }
@@ -123,7 +123,6 @@ class OAuthController extends Controller
         $form = $this->createFormBuilder($app)
             ->add('key', 'text', array('label' => 'App Key'))
             ->add('secret', 'text', array('label' => 'App Secret'))
-            ->add('save', 'submit')
             ->getForm();
 
         $form->handleRequest($request);
@@ -142,10 +141,12 @@ class OAuthController extends Controller
         }
 
         return $this->render(
-            'CampaignChainCoreBundle:Activity:new.html.twig',
+            'CampaignChainCoreBundle:Base:new.html.twig',
             array(
                 'page_title' => 'Configure App Credentials for '.$app->getResourceOwner(),
                 'form' => $form->createView(),
+                'form_submit_label' => 'Save',
+                'form_cancel_route' => 'campaignchain_security_authentication_client_oauth_apps',
             ));
     }
 
