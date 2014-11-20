@@ -10,13 +10,14 @@
 
 namespace CampaignChain\Security\Authentication\Client\OAuthBundle\Entity;
 
+use CampaignChain\CoreBundle\Entity\Meta;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="campaignchain_security_authentication_client_oauth_application")
  */
-class Application
+class Application extends Meta
 {
     /**
      * @ORM\OneToMany(targetEntity="Token", mappedBy="application")
