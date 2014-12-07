@@ -17,5 +17,20 @@
     },
     "autoload": {
         "psr-4": { "CampaignChain\\Security\\Authentication\\Client\\OAuthBundle\\": "" }
+    },
+    "extra": {
+        "campaignchain": {
+            "kernel": {
+                "classes": [
+                    "CampaignChain\\Security\\Authentication\\Client\\OAuthBundle\\CampaignChainSecurityAuthenticationClientOAuthBundle"
+                ],
+                "routing":
+                {
+                    "name": "campaignchain_security_authentication_client_o_auth",
+                    "resource": "@CampaignChainSecurityAuthenticationClientOAuthBundle/Resources/config/routing.yml",
+                    "prefix": "/"
+                }
+            }
+        }
     }
 }
