@@ -14,6 +14,14 @@ campaignchain_security_authentication_client_oauth_new:
     pattern:  /security/authentication/client/oauth/new
     defaults: { _controller: CampaignChainSecurityAuthenticationClientOAuthBundle:OAuth:new }
 
+campaignchain_security_authentication_client_oauth_apps:
+    pattern:  /security/authentication/client/oauth/apps
+    defaults: { _controller: CampaignChainSecurityAuthenticationClientOAuthBundle:OAuth:appsIndex }
+
+campaignchain_security_authentication_client_oauth_apps_edit:
+    pattern:  /security/authentication/client/oauth/apps/{id}/edit
+    defaults: { _controller: CampaignChainSecurityAuthenticationClientOAuthBundle:OAuth:appsEdit }
+
 #HWIOAuthBundle routes
 #hwi_oauth_security:
 #    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"

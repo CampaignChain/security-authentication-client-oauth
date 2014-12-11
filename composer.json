@@ -12,10 +12,26 @@
         }
     ],
     "require": {
-        "campaignchain/core": "dev-master",
+        "campaignchain/core": "1.0.0-alpha.3",
         "hybridauth/hybridauth": "2.2.2"
     },
     "autoload": {
-        "psr-4": { "CampaignChain\\Security\\Authentication\\Client\\OAuthBundle\\": "" }
+        "psr-4": { "CampaignChain\\Security\\Authentication\\Client\\OAuthBundle\\": "" },
+        "classmap": ["/../../../vendor/hybridauth/hybridauth/hybridauth"]
+    },
+    "extra": {
+        "campaignchain": {
+            "kernel": {
+                "classes": [
+                    "CampaignChain\\Security\\Authentication\\Client\\OAuthBundle\\CampaignChainSecurityAuthenticationClientOAuthBundle"
+                ],
+                "routing":
+                {
+                    "name": "campaignchain_security_authentication_client_o_auth",
+                    "resource": "@CampaignChainSecurityAuthenticationClientOAuthBundle/Resources/config/routing.yml",
+                    "prefix": "/"
+                }
+            }
+        }
     }
 }
