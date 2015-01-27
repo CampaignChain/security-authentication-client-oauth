@@ -12,8 +12,8 @@
         }
     ],
     "require": {
-        "campaignchain/core": "1.0.0@beta",
-        "hybridauth/hybridauth": "2.2.2"
+        "campaignchain/core": "1.0.0@beta - 1.0.0@rc",
+        "hybridauth/hybridauth": "@dev"
     },
     "autoload": {
         "psr-4": { "CampaignChain\\Security\\Authentication\\Client\\OAuthBundle\\": "" },
