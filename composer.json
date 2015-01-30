@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": { "CampaignChain\\Security\\Authentication\\Client\\OAuthBundle\\": "" },
-        "files": ["vendor/hybridauth/hybridauth/hybridauth/User.php"]
+        "files": ["/../../../vendor/hybridauth/hybridauth/hybridauth/User.php"]
     },
     "extra": {
         "branch-alias": {
