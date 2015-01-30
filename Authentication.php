@@ -12,6 +12,7 @@ namespace CampaignChain\Security\Authentication\Client\OAuthBundle;
 
 use CampaignChain\Security\Authentication\Client\OAuthBundle\Entity\Token;
 use CampaignChain\CoreBundle\Entity\Location;
+use \Hybrid_Auth;
 
 class Authentication
 {
@@ -71,7 +72,7 @@ class Authentication
         }
 
         try{
-            $hybridauth = new \Hybrid_Auth( $config );
+            $hybridauth = new Hybrid_Auth( $config );
             $resource = $hybridauth->authenticate( $resourceOwner );
             $this->profile = $resource->getUserProfile();
             $accessToken = $resource->getAccessToken();

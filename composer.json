@@ -16,8 +16,7 @@
         "hybridauth/hybridauth": "dev-master"
     },
     "autoload": {
-        "psr-4": { "CampaignChain\\Security\\Authentication\\Client\\OAuthBundle\\": "" },
-        "classmap": ["/../../../vendor/hybridauth/hybridauth/hybridauth"]
+        "psr-4": { "CampaignChain\\Security\\Authentication\\Client\\OAuthBundle\\": "" }
     },
     "extra": {
         "branch-alias": {
