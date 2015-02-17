@@ -12,6 +12,7 @@ namespace CampaignChain\Security\Authentication\Client\OAuthBundle;
 
 use CampaignChain\Security\Authentication\Client\OAuthBundle\Entity\Token;
 use CampaignChain\CoreBundle\Entity\Location;
+use \Hybrid_Auth;
 
 class Authentication
 {
@@ -61,8 +62,17 @@ class Authentication
 
         $config['providers'][$resourceOwner] = array_merge($config['providers'][$resourceOwner], $applicationInfo['parameters']);
 
+        if(isset($applicationInfo['wrapper'])){
+            $config['providers'][$resourceOwner]['wrapper']['class']
+                = $applicationInfo['wrapper']['class'];
+            $config['providers'][$resourceOwner]['wrapper']['path']
+                = $this->container->get('kernel')->getRootDir()
+                    .DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR
+                    .str_replace('/', DIRECTORY_SEPARATOR, $applicationInfo['wrapper']['path']);
+        }
+
         try{
-            $hybridauth = new \Hybrid_Auth( $config );
+            $hybridauth = new Hybrid_Auth( $config );
             $resource = $hybridauth->authenticate( $resourceOwner );
             $this->profile = $resource->getUserProfile();
             $accessToken = $resource->getAccessToken();
