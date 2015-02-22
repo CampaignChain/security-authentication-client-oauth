@@ -85,6 +85,7 @@ class Authentication
             $token->setRefreshToken($accessToken["refresh_token"]);
             $token->setExpiresIn($accessToken["expires_in"]);
             $token->setExpiresAt($accessToken["expires_at"]);
+            $token->setEndpoint($resource->adapter->api->api_base_url);
             if(isset($applicationInfo['parameters']['scope'])){
                 $token->setScope($applicationInfo['parameters']['scope']);
             }

@@ -68,6 +68,11 @@ class Token extends Meta
     protected $scope;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $endpoint;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -259,5 +264,28 @@ class Token extends Meta
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set endpoint
+     *
+     * @param string $endpoint
+     * @return Token
+     */
+    public function setEndpoint($endpoint)
+    {
+        $this->endpoint = $endpoint;
+
+        return $this;
+    }
+
+    /**
+     * Get endpoint
+     *
+     * @return string
+     */
+    public function getEndpoint()
+    {
+        return $this->endpoint;
     }
 }
