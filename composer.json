@@ -1,7 +1,7 @@
 {
     "name": "campaignchain/security-authentication-client-oauth",
     "description": "OAuth client to be used by channel modules.",
-    "keywords": ["oauth","client"],
+    "keywords": ["oauth","client","campaignchain"],
     "type": "campaignchain-security",
     "homepage": "http://www.campaignchain.com",
     "license": "Apache-2.0",
