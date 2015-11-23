@@ -29,9 +29,11 @@ file that was distributed with this source code.
                         <td>{{ app.key }}</td>
                         <td>{{ app.secret }}</td>
                         <td>
-                            <a role="button" class="btn btn-default btn-xs"
+                            <a role="button" class="btn btn-primary"
+                               data-toggle="tooltip" data-placement="top" data-original-title="Edit"
                                href="{{ path('campaignchain_security_authentication_client_oauth_apps_edit',{'id':app.id}) }}">
-                                <span class="fa fa-pencil"></span></a>
+                                <span class="fa fa-pencil"></span>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
