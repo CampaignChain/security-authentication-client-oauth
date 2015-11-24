@@ -82,6 +82,11 @@ class Token extends Meta
         return $this->id;
     }
 
+    public function __clone()
+    {
+        $this->id = null;
+    }
+
     /**
      * Set accessToken
      *
