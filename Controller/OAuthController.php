@@ -103,7 +103,7 @@ class OAuthController extends Controller
         return $this->render(
             'CampaignChainSecurityAuthenticationClientOAuthBundle:Application:index.html.twig',
             array(
-                'page_title' => 'OAuth Apps',
+                'page_title' => 'OAuth Client Apps',
                 'apps' => $apps
             ));
     }
