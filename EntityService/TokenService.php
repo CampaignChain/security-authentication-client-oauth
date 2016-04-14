@@ -12,6 +12,7 @@ namespace CampaignChain\Security\Authentication\Client\OAuthBundle\EntityService
 
 use CampaignChain\CoreBundle\Entity\Channel;
 use CampaignChain\CoreBundle\Entity\Location;
+use CampaignChain\Security\Authentication\Client\OAuthBundle\Entity\Application;
 use CampaignChain\Security\Authentication\Client\OAuthBundle\Entity\Token;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -47,6 +48,17 @@ class TokenService
         } else {
             return $this->token;
         }
+    }
+
+    /**
+     * @param Application $application
+     * @return null|Token
+     */
+    public function getTokenByApplication(Application $application)
+    {
+        return $this->em
+            ->getRepository('CampaignChainSecurityAuthenticationClientOAuthBundle:Token')
+            ->findOneByApplication($application);
     }
 
     public function setToken(Token $newToken){
