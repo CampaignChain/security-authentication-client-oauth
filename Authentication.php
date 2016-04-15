@@ -12,7 +12,9 @@ namespace CampaignChain\Security\Authentication\Client\OAuthBundle;
 
 use CampaignChain\Security\Authentication\Client\OAuthBundle\Entity\Token;
 use CampaignChain\CoreBundle\Entity\Location;
+use CampaignChain\Security\Authentication\Client\OAuthBundle\EntityService\TokenService;
 use \Hybrid_Auth;
+use Symfony\Component\DependencyInjection\Container;
 
 class Authentication
 {
@@ -23,8 +25,15 @@ class Authentication
     const STATUS_NO_CHANGE = false;
 
     private $profile;
+
+    /**
+     * @var TokenService
+     */
     private $oauthToken;
 
+    /**
+     * @var Container
+     */
     protected $container;
 
     public function setContainer($container)
@@ -32,6 +41,12 @@ class Authentication
         $this->container = $container;
     }
 
+    /**
+     * @param $resourceOwner
+     * @param $applicationInfo
+     *
+     * @throws \Exception
+     */
     public function authenticate($resourceOwner, $applicationInfo)
     {
         // Get application credentials
@@ -85,7 +100,9 @@ class Authentication
             $token->setRefreshToken($accessToken["refresh_token"]);
             $token->setExpiresIn($accessToken["expires_in"]);
             $token->setExpiresAt($accessToken["expires_at"]);
-            $token->setEndpoint($resource->adapter->api->api_base_url);
+            if (isset($resource->adapter->api->api_base_url)) {
+                $token->setEndpoint($resource->adapter->api->api_base_url);
+            }
             if(isset($applicationInfo['parameters']['scope'])){
                 $token->setScope($applicationInfo['parameters']['scope']);
             }

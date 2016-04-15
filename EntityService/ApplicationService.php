@@ -26,6 +26,10 @@ class ApplicationService
         $this->container = $container;
     }
 
+    /**
+     * @param $resourceOwner
+     * @return \CampaignChain\Security\Authentication\Client\OAuthBundle\Entity\Application
+     */
     public function getApplication($resourceOwner){
         return $this->em->getRepository('CampaignChainSecurityAuthenticationClientOAuthBundle:Application')->findOneBy(array(
             'resourceOwner' => $resourceOwner,
