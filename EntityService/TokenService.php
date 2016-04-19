@@ -10,6 +10,7 @@
 
 namespace CampaignChain\Security\Authentication\Client\OAuthBundle\EntityService;
 
+use CampaignChain\Channel\LinkedInBundle\Controller\LinkedInController;
 use CampaignChain\CoreBundle\Entity\Channel;
 use CampaignChain\CoreBundle\Entity\Location;
 use CampaignChain\Security\Authentication\Client\OAuthBundle\Entity\Application;
@@ -122,11 +123,16 @@ class TokenService
                     }
                     // If the channel has the same access token and the same scope,
                     // or no scope has been defined, then we're done.
-                    $status = self::STATUS_SAME_SCOPE;
 
-                    return $status;
+                    return self::STATUS_SAME_SCOPE;
+                } elseif ($newToken->getApplication()->getResourceOwner() === LinkedInController::RESOURCE_OWNER) {
+                    //Linkedin sends the same token
+                    $this->token = $newToken;
+                    $this->em->persist($this->token);
+                    $this->em->flush();
+                    return self::STATUS_NEW_TOKEN;
                 }
-                $status = self::STATUS_NO_CHANGE;
+                return self::STATUS_NO_CHANGE;
             }
         } else {
             $this->em->persist($newToken);
