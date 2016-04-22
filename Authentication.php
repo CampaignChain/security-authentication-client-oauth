@@ -44,10 +44,11 @@ class Authentication
     /**
      * @param $resourceOwner
      * @param $applicationInfo
+     * @param bool $sameToken
      *
      * @throws \Exception
      */
-    public function authenticate($resourceOwner, $applicationInfo)
+    public function authenticate($resourceOwner, $applicationInfo, $sameToken = false)
     {
         // Get application credentials
         $oauthApp = $this->container->get('campaignchain.security.authentication.client.oauth.application');
@@ -86,7 +87,7 @@ class Authentication
                     .str_replace('/', DIRECTORY_SEPARATOR, $applicationInfo['wrapper']['path']);
         }
 
-        try{
+        try {
             $hybridauth = new Hybrid_Auth( $config );
             $resource = $hybridauth->authenticate( $resourceOwner );
             $this->profile = $resource->getUserProfile();
@@ -108,9 +109,8 @@ class Authentication
             }
 
             $this->oauthToken = $this->container->get('campaignchain.security.authentication.client.oauth.token');
-            return $this->oauthToken->setToken($token);
-        }
-        catch( Exception $e ){
+            return $this->oauthToken->setToken($token, $sameToken);
+        } catch( \Exception $e ) {
             // Display the recived error,
             // to know more please refer to Exceptions handling section on the userguide
             switch( $e->getCode() ){
@@ -144,6 +144,7 @@ class Authentication
     public function setLocation(Location $location){
         $token = $this->oauthToken->getToken();
         $token->setLocation($location);
+
         return $this->oauthToken->setToken($token);
     }
 
