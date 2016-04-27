@@ -74,9 +74,9 @@ class OAuthController extends Controller
             $application->setResourceOwner($request->query->get('resource_owner'));
 
             // perform some action, such as saving the task to the database
-            $repository = $this->getDoctrine()->getManager();
-            $repository->persist($application);
-            $repository->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($application);
+            $em->flush();
 
             return $this->redirect($request->query->get('redirect'));
         }
