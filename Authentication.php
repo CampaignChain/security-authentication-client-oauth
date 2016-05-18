@@ -10,6 +10,7 @@
 
 namespace CampaignChain\Security\Authentication\Client\OAuthBundle;
 
+use CampaignChain\CoreBundle\Exception\ExternalApiException;
 use CampaignChain\Security\Authentication\Client\OAuthBundle\Entity\Token;
 use CampaignChain\CoreBundle\Entity\Location;
 use CampaignChain\Security\Authentication\Client\OAuthBundle\EntityService\TokenService;
@@ -111,29 +112,7 @@ class Authentication
             $this->oauthToken = $this->container->get('campaignchain.security.authentication.client.oauth.token');
             return $this->oauthToken->setToken($token, $sameToken);
         } catch( \Exception $e ) {
-            // Display the recived error,
-            // to know more please refer to Exceptions handling section on the userguide
-            switch( $e->getCode() ){
-                case 0 : echo "Unspecified error."; break;
-                case 1 : echo "Hybriauth configuration error."; break;
-                case 2 : echo "Provider not properly configured."; break;
-                case 3 : echo "Unknown or disabled provider."; break;
-                case 4 : echo "Missing provider application credentials."; break;
-                case 5 : echo "Authentification failed. "
-                    . "The user has canceled the authentication or the provider refused the connection.";
-                    break;
-                case 6 : echo "User profile request failed. Most likely the user is not connected "
-                    . "to the provider and he should authenticate again.";
-                    $resource->logout();
-                    break;
-                case 7 : echo "User not connected to the provider.";
-                    $resource->logout();
-                    break;
-                case 8 : echo "Provider does not support this feature."; break;
-            }
-
-            // well, basically your should not display this to the end user, just give him a hint and move on..
-            echo "<br /><br /><b>Original error message:</b> " . $e->getMessage();
+            throw new ExternalApiException($e->getMessage(), $e->getCode(), $e);
         }
     }
 
