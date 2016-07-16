@@ -17,8 +17,13 @@
 
 namespace CampaignChain\Security\Authentication\Client\OAuthBundle;
 
+use CampaignChain\Security\Authentication\Client\OAuthBundle\DependencyInjection\CampaignChainSecurityAuthenticationClientOAuthExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class CampaignChainSecurityAuthenticationClientOAuthBundle extends Bundle
 {
+    public function getContainerExtension()
+    {
+        return new CampaignChainSecurityAuthenticationClientOAuthExtension();
+    }
 }
