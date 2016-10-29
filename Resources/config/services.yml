@@ -27,7 +27,7 @@ services:
             - [setContainer, ["@service_container"]]
     campaignchain.security.authentication.client.oauth.application:
         class: CampaignChain\Security\Authentication\Client\OAuthBundle\EntityService\ApplicationService
-        arguments: [ @doctrine.orm.entity_manager, @service_container ]
+        arguments: [ @doctrine, @service_container ]
     campaignchain.security.authentication.client.oauth.token:
         class: CampaignChain\Security\Authentication\Client\OAuthBundle\EntityService\TokenService
-        arguments: [ @doctrine.orm.entity_manager, @service_container ]
+        arguments: [ @doctrine, @service_container ]

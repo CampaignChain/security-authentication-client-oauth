@@ -20,7 +20,7 @@ namespace CampaignChain\Security\Authentication\Client\OAuthBundle\EntityService
 use CampaignChain\CoreBundle\Entity\Location;
 use CampaignChain\Security\Authentication\Client\OAuthBundle\Entity\Application;
 use CampaignChain\Security\Authentication\Client\OAuthBundle\Entity\Token;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * Class TokenService
@@ -39,17 +39,17 @@ class TokenService
     protected $token;
 
     /**
-     * @var EntityManager
+     * @var Registry
      */
     protected $em;
 
     /**
      * TokenService constructor.
-     * @param EntityManager $em
+     * @param ManagerRegistry $managerRegistry
      */
-    public function __construct(EntityManager $em)
+    public function __construct(ManagerRegistry $managerRegistry)
     {
-        $this->em = $em;
+        $this->em = $managerRegistry->getManager();
     }
 
     /**
