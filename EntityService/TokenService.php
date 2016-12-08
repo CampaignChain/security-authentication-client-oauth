@@ -93,11 +93,14 @@ class TokenService
      * @param bool $sameToken
      * @return bool|string
      */
-    public function setToken(Token $newToken, $sameToken = false)
+    public function setToken(Token $newToken, $sameToken = false, $persist = true)
     {
         if ($newToken->getLocation()) {
-            $this->em->persist($newToken);
-            $this->em->flush();
+            $this->token = $newToken;
+            if($persist) {
+                $this->em->persist($newToken);
+                $this->em->flush();
+            }
 
             return true;
         }
@@ -123,8 +126,11 @@ class TokenService
             // TODO: Implement what to do if token was persisted previously without channel relationship?
 
             $this->token = $newToken;
-            $this->em->persist($this->token);
-            $this->em->flush();
+
+            if($persist) {
+                $this->em->persist($this->token);
+                $this->em->flush();
+            }
 
             return self::STATUS_NEW_TOKEN;
         }
@@ -138,8 +144,11 @@ class TokenService
         //And even though they are same, it has to be saved as a new token
         if ($sameToken) {
             $this->token = $newToken;
-            $this->em->persist($this->token);
-            $this->em->flush();
+
+            if($persist) {
+                $this->em->persist($this->token);
+                $this->em->flush();
+            }
 
             return self::STATUS_NEW_TOKEN;
         }
@@ -174,8 +183,10 @@ class TokenService
             $status = self::STATUS_NEW_SCOPE;
         }
 
-        $this->em->persist($this->token);
-        $this->em->flush();
+        if($persist) {
+            $this->em->persist($this->token);
+            $this->em->flush();
+        }
 
         return $status;
     }

@@ -53,10 +53,11 @@ class Authentication
      * @param $resourceOwner
      * @param $applicationInfo
      * @param bool $sameToken
+     * @param bool $persistToken Persist a new token in the database?
      *
      * @throws \Exception
      */
-    public function authenticate($resourceOwner, $applicationInfo, $sameToken = false)
+    public function authenticate($resourceOwner, $applicationInfo, $sameToken = false, $persistToken = true)
     {
         // Get application credentials
         $oauthApp = $this->container->get('campaignchain.security.authentication.client.oauth.application');
@@ -117,7 +118,7 @@ class Authentication
             }
 
             $this->oauthToken = $this->container->get('campaignchain.security.authentication.client.oauth.token');
-            return $this->oauthToken->setToken($token, $sameToken);
+            return $this->oauthToken->setToken($token, $sameToken, $persistToken);
         } catch( \Exception $e ) {
             throw new ExternalApiException($e->getMessage(), $e->getCode(), $e);
         }
