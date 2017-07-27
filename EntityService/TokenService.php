@@ -206,4 +206,16 @@ class TokenService
 
         $this->em->flush();
     }
+
+    public function refreshToken($oldAccessToken, $newAccessToken)
+    {
+        /** @var Token $token */
+        $token = $this->em
+            ->getRepository('CampaignChainSecurityAuthenticationClientOAuthBundle:Token')
+            ->findOneBy(array('accessToken' => $oldAccessToken));
+
+        $token->setAccessToken($newAccessToken);
+
+        $this->em->flush();
+    }
 }
