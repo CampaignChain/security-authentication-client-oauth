@@ -14,19 +14,19 @@
 
 #Hybridauth routes
 campaignchain_security_authentication_client_oauth_login:
-    pattern:  /security/authentication/client/oauth/login
+    path:  /security/authentication/client/oauth/login
     defaults: { _controller: CampaignChainSecurityAuthenticationClientOAuthBundle:OAuth:login }
 
 campaignchain_security_authentication_client_oauth_new:
-    pattern:  /security/authentication/client/oauth/new
+    path:  /security/authentication/client/oauth/new
     defaults: { _controller: CampaignChainSecurityAuthenticationClientOAuthBundle:OAuth:new }
 
 campaignchain_security_authentication_client_oauth_apps:
-    pattern:  /security/authentication/client/oauth/apps
+    path:  /security/authentication/client/oauth/apps
     defaults: { _controller: CampaignChainSecurityAuthenticationClientOAuthBundle:OAuth:appsIndex }
 
 campaignchain_security_authentication_client_oauth_apps_edit:
-    pattern:  /security/authentication/client/oauth/apps/{id}/edit
+    path:  /security/authentication/client/oauth/apps/{id}/edit
     defaults: { _controller: CampaignChainSecurityAuthenticationClientOAuthBundle:OAuth:appsEdit }
 
 #HWIOAuthBundle routes
@@ -43,5 +43,5 @@ campaignchain_security_authentication_client_oauth_apps_edit:
 #    prefix: /security/authentication/client/oauth
 
 #campaignchain_security_authentication_client_o_auth_homepage:
-#    pattern:  /hello/{name}
+#    path:  /hello/{name}
 #    defaults: { _controller: CampaignChainSecurityAuthenticationClientOAuthBundle:Default:index }
